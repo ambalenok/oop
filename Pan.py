@@ -1,10 +1,10 @@
 import os.path
 import json
 
-from Patients import Patients
-from Doctor import Doctors
-from Appeals import Appeals
-from ClassList import ClassList
+from model.Patients import Patients
+from model.Doctor import Doctors
+from model.Appeals import Appeals
+from service.ClassList import ClassList
 
 
 class Pan(object):
