@@ -1,5 +1,6 @@
 from model.Shared import Shared
 
+
 class Patients(Shared):
     def __init__(self, id, surname, patronymic, year):
         super().__init__(id, surname, patronymic)
