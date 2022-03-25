@@ -4,15 +4,15 @@ import json
 from model.Patients import Patients
 from model.Doctor import Doctors
 from model.Appeals import Appeals
-from service.ClassList import ClassList
+from service.ClassListService import ClassListService
 
 
 class Pan(object):
     def __init__(self, file_name=""):
         # todo заменить ClassList() на базовый объект list()
-        self.__patientse = ClassList()
-        self.__doctorse = ClassList()
-        self.__appealse = ClassList()
+        self.__patientse = ClassListService()
+        self.__doctorse = ClassListService()
+        self.__appealse = ClassListService()
         if file_name:
             self.read(file_name)
 
