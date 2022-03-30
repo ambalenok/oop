@@ -9,39 +9,42 @@ from service.ClassListService import ClassListService
 
 class Pan(object):
     def __init__(self, file_name=""):
-        # todo заменить ClassList() на базовый объект list()
-        self.__patientse = ClassListService()
-        self.__doctorse = ClassListService()
-        self.__appealse = ClassListService()
+
+        self.__patientse = list()
+        self.__doctorse = list()
+        self.__appealse = list()
         if file_name:
             self.read(file_name)
 
     # todo Вынести данный метод в соответствующие контроллеры
     def read(self, file_name):
         with open(file_name) as file_input:
-            data = json.load(file_input)
+            data: dict = json.load(file_input)
 
-        for item in data["doctors"]:
-            doctors = Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
-        self.__doctorse.append(doctors)
+        doctors = data.get("doctors")
 
-        for item in data["patients"]:
+        for item in doctors:
+            doctor = Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
+            self.__doctorse.append(doctor)
+
+        patients = data.get("patients")
+        for item in patients:
             patients = Patients(item["id"], item["surname"], item["patronymic"], item["year"])
         self.__patientse.append(patients)
 
         for item in data["appeals"]:
-            appeals = Appeals(item["id"], self.__doctorse.getByID(item["doctors"]),
-                              self.__patientse.getByID(item["patients"]),
+            appeals = Appeals(item["id"], ClassListService.getByID(self.__doctorse, item["doctors"]),
+                              ClassListService.getByID(self.__patientse,item["patients"]),
                               item["date"], item["diagnos"], item["cost"])
             self.__appealse.append(appeals)
 
     # todo Вынести данный метод в соответствующие контроллеры
     def write(self, file_name):
-        if not os.path.exists(file_name):
-            data = {}
-        else:
+        if os.path.exists(file_name):
             with open(file_name) as file_input:
                 data = json.load(file_input)
+        else:
+            data = dict()
 
         data["doctors"] = []
         for item in self.__doctorse:
