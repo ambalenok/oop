@@ -12,11 +12,11 @@ class ControllerMet(object):
         with open(file_name) as file_input:
             data: dict = json.load(file_input)
         doctors = data.get("doctors")
-        ControllerDoc.List(doctors, doctorse)
+        ControllerDoc.list(doctors, doctorse)
         patients = data.get("patients")
-        ControllerPat.List(patients, patientse)
+        ControllerPat.list(patients, patientse)
         appeals = data["appeals"]
-        ControllerApp.List(appeals, appealse, doctorse, patientse)
+        ControllerApp.list(appeals, appealse, doctorse, patientse)
 
     def write(file_name, doctorse, patientse, appealse):
         if os.path.exists(file_name):
@@ -26,13 +26,13 @@ class ControllerMet(object):
             data = dict()
 
         data["doctors"] = []
-        ControllerDoc.Dict(doctorse, data)
+        ControllerDoc.dict(doctorse, data)
 
         data["patients"] = []
-        ControllerPat.Dict(patientse, data)
+        ControllerPat.dict(patientse, data)
 
         data["appeals"] = []
-        ControllerApp.Dict(appealse, data)
+        ControllerApp.dict(appealse, data)
 
         with open(file_name, "w") as file_output:
             json.dump(data, file_output)
