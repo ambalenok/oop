@@ -3,6 +3,7 @@ from service.ClassListService import ClassListService
 
 
 class ControllerApp(object):
+    # todo название методов должно начинаться с маленькой буквы
     @staticmethod
     def List(appeals, appealse, doctorse, patientse):
         for item in appeals:
@@ -10,7 +11,7 @@ class ControllerApp(object):
                               ClassListService.getByID(patientse, item["patients"]),
                               item["date"], item["diagnos"], item["cost"])
             appealse.append(appeals)
-
+    # todo
     @staticmethod
     def Dict(appealse, data):
         for item in appealse:
