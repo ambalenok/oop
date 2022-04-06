@@ -5,12 +5,14 @@ from service.ClassListService import ClassListService
 class ControllerApp(object):
 
     @staticmethod
-    def list(appeals, appealse, doctorse, patientse):
+    def list(appeals, doctorse, patientse):
+        appealse = list()
         for item in appeals:
             appeals = Appeals(item["id"], ClassListService.getByID(doctorse, item["doctors"]),
                               ClassListService.getByID(patientse, item["patients"]),
                               item["date"], item["diagnos"], item["cost"])
             appealse.append(appeals)
+        return appealse
 
     @staticmethod
     def dict(appealse, data):

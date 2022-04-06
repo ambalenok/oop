@@ -4,10 +4,13 @@ from model.Patients import Patients
 class ControllerPat(object):
 
     @staticmethod
-    def list(patients, patientse):
+    def list(patients):
+        patientse = list()
+
         for item in patients:
             patients = Patients(item["id"], item["surname"], item["patronymic"], item["year"])
             patientse.append(patients)
+        return patientse
 
     @staticmethod
     def dict(patientse, data):

@@ -3,10 +3,12 @@ from model.Doctor import Doctors
 
 class ControllerDoc(object):
     @staticmethod
-    def list(doctors, doctorse):
+    def list(doctors):
+        doctorse = list()
         for item in doctors:
             doctor = Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
             doctorse.append(doctor)
+        return doctorse
 
     @staticmethod
     def dict(doctorse, data):

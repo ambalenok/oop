@@ -1,18 +1,22 @@
-from controllers.ControllerMet import ControllerMet
+import json
+
+from controllers.ControllerDoc import ControllerDoc
+from controllers.ControllerPat import ControllerPat
+from controllers.ControllerApp import ControllerApp
 
 
 class Pan(object):
     def __init__(self, file_name=""):
-        # todo Не верная логика работы. Ты создаёшь пустые списки и передаёшь их в метод read.
-        #  Должно быть наоборот. Ты из метода read должен получить соответствующий список, от соответствующего
-        #  контроллера, т.е.: self.__patientse = controllerPat.read().
-        #  Соответственно, класс ControllerPat должен быть проинициализирован заранее.
-        self.__patientse = list()
-        self.__doctorse = list()
-        self.__appealse = list()
+
         if file_name:
-            # todo если ты хочешь использовать метод как статичный, то он им и должен быть
-            ControllerMet.read(file_name, self.__patientse, self.__doctorse, self.__appealse)
+            with open(file_name) as file_input:
+                data: dict = json.load(file_input)
+            patientdict = data.get("patients")
+            doctordict = data.get("doctors")
+            appealdict = data["appeals"]
+            self.__patientse = ControllerPat.list(patientdict)
+            self.__doctorse = ControllerDoc.list(doctordict)
+            self.__appealse = ControllerApp.list(appealdict, self.__patientse, self.__doctorse)
 
     def print(self):
         for item in self.__doctorse, self.__patientse, self.__appealse:
