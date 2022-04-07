@@ -3,6 +3,8 @@ from service.ClassListService import ClassListService
 
 
 class ControllerApp(object):
+    # todo не верная реализация. Тут должны быть CRUD (я их писал для примера в удалённом общем контроллере) операции
+    #  и не статичными методами
 
     @staticmethod
     def list(appeals, doctorse, patientse):
