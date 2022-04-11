@@ -16,14 +16,16 @@ class Pan(object):
             patientdict = data.get("patients")
             doctordict = data.get("doctors")
             appealdict = data["appeals"]
-            self.__patientse = controllerPat.list(patientdict)
-            self.__doctorse = controllerDoc.list(doctordict)
-            self.__appealse = controllerApp.list(appealdict, self.__patientse, self.__doctorse)
+            self.__patientse = controllerPat.write(patientdict)
+            self.__doctorse = controllerDoc.write(doctordict)
+            self.__appealse = controllerApp.write(appealdict, self.__patientse, self.__doctorse)
+            id = 51
+            self.__patientse = controllerPat.delet(self.__patientse, id)
 
-    def print(self):
-        for item in self.__doctorse, self.__patientse, self.__appealse:
+    def read(self):
+        for item in self.__patientse:
             print(item)
 
 
 x = Pan("data.json")
-x.print()
+x.read()

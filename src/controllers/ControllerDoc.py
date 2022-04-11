@@ -3,7 +3,7 @@ from model.Doctor import Doctors
 
 class ControllerDoc(object):
 
-    def list(self, doctors):
+    def write(self, doctors):
         doctorse = list()
         for item in doctors:
             doctor = Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
@@ -20,3 +20,10 @@ class ControllerDoc(object):
                 "category": item.getCategory()
             }
             data["doctors"].append(doctors)
+
+    def delet(self, doctors, id):
+        doctorse = list()
+        for item in doctors:
+            doctor = Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
+            doctorse.append(doctor)
+        return doctorse
