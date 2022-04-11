@@ -6,7 +6,7 @@ class ControllerApp(object):
     # todo не верная реализация. Тут должны быть CRUD (я их писал для примера в удалённом общем контроллере) операции
     #  и не статичными методами
 
-    def write(self, appeals, patientse, doctorse):
+    def read(self, appeals, patientse, doctorse):
         appealse = list()
         for item in appeals:
             appeals = Appeals(item["id"], ClassListService.getByID(doctorse, item["doctors"]),

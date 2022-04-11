@@ -3,7 +3,7 @@ from model.Patients import Patients
 
 class ControllerPat(object):
 
-    def write(self, patients):
+    def read(self, patients):
         patientse = list()
 
         for item in patients:
@@ -25,7 +25,7 @@ class ControllerPat(object):
     def delet(self, list, id):
         for item in list:
             if item.getID() == id:
-                del list[1]
+                del list[id % 10]
                 return list
         else:
             return list

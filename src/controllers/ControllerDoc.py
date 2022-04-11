@@ -3,7 +3,7 @@ from model.Doctor import Doctors
 
 class ControllerDoc(object):
 
-    def write(self, doctors):
+    def read(self, doctors):
         doctorse = list()
         for item in doctors:
             doctor = Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])

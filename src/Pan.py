@@ -16,14 +16,13 @@ class Pan(object):
             patientdict = data.get("patients")
             doctordict = data.get("doctors")
             appealdict = data["appeals"]
-            self.__patientse = controllerPat.write(patientdict)
-            self.__doctorse = controllerDoc.write(doctordict)
-            self.__appealse = controllerApp.write(appealdict, self.__patientse, self.__doctorse)
-            id = 51
-            self.__patientse = controllerPat.delet(self.__patientse, id)
+            self.__patientse = controllerPat.read(patientdict)
+            self.__doctorse = controllerDoc.read(doctordict)
+            self.__appealse = controllerApp.read(appealdict, self.__patientse, self.__doctorse)
+
 
     def read(self):
-        for item in self.__patientse:
+        for item in self.__patientse, self.__doctorse, self.__appealse:
             print(item)
 
 
