@@ -3,8 +3,6 @@ from service.ClassListService import ClassListService
 
 
 class ControllerApp(object):
-    # todo не верная реализация. Тут должны быть CRUD (я их писал для примера в удалённом общем контроллере) операции
-    #  и не статичными методами
 
     def read(self, appeals, patientse, doctorse):
         appealse = list()
@@ -26,3 +24,11 @@ class ControllerApp(object):
                 "cost": item.getCost()
             }
             data["appeals"].append(appeal)
+
+    def delet(self, list, id):
+        for item in list:
+            if item.getID() == id:
+                del list[id % 100]
+                return list
+        else:
+            return list

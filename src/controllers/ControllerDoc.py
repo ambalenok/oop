@@ -21,9 +21,10 @@ class ControllerDoc(object):
             }
             data["doctors"].append(doctors)
 
-    def delet(self, doctors, id):
-        doctorse = list()
-        for item in doctors:
-            doctor = Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
-            doctorse.append(doctor)
-        return doctorse
+    def delet(self, list, id):
+        for item in list:
+            if item.getID() == id:
+                del list[id - 1]
+                return list
+        else:
+            return list

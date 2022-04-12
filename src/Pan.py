@@ -20,7 +20,6 @@ class Pan(object):
             self.__doctorse = controllerDoc.read(doctordict)
             self.__appealse = controllerApp.read(appealdict, self.__patientse, self.__doctorse)
 
-
     def read(self):
         for item in self.__patientse, self.__doctorse, self.__appealse:
             print(item)
