@@ -16,7 +16,8 @@ class BasiController(object):
             patientdict = data.get("patients")
             doctordict = data.get("doctors")
             appealdict = data["appeals"]
-            self.__patientse = controllerPat.read(patientdict)
-            self.__doctorse = controllerDoc.read(doctordict)
-            self.__appealse = controllerApp.read(appealdict, self.__patientse, self.__doctorse)
-            return self.__patientse + self.__doctorse + self.__appealse
+
+            patientse = controllerPat.read(patientdict)
+            doctorse = controllerDoc.read(doctordict)
+            appealse = controllerApp.read(appealdict, patientse, doctorse)
+            return patientse + doctorse + appealse

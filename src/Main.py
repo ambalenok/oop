@@ -1,7 +1,7 @@
 from controllers.BasiController import BasiController
 
 
-class Pan(object):
+class Main(object):
     def __init__(self, file_name=""):
         basiController = BasiController()
 
@@ -12,5 +12,5 @@ class Pan(object):
             print(item)
 
 
-x = Pan("data.json")
+x = Main("data.json")
 x.read()
