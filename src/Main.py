@@ -3,9 +3,10 @@ from controllers.BasiController import BasiController
 
 class Main(object):
     def __init__(self, file_name=""):
-        basiController = BasiController()
+        basiController = BasiController(file_name)
 
-        self.__list = basiController.read(file_name)
+        if file_name:
+            self.__list = basiController.read()
 
     def read(self):
         for item in self.__list:
