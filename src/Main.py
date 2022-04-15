@@ -1,3 +1,4 @@
+import configparser
 from controllers.BasiController import BasiController
 
 
@@ -13,5 +14,8 @@ class Main(object):
             print(item)
 
 
-x = Main("data.json")
+config = configparser.ConfigParser()
+config.read("settings.conf")
+
+x = Main(config["addr"]["root"])
 x.read()
