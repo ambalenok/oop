@@ -1,10 +1,13 @@
+from controllers.BasiController import BasiController
 from model.Doctor import Doctors
 
 
-class ControllerDoc(object):
+class ControllerDoc(BasiController):
 
-    def read(self, doctors):
+    def read(self):
         doctorse = list()
+        basicontroller = BasiController()
+        doctors = basicontroller.baza('doc')
         for item in doctors:
             doctor = Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
             doctorse.append(doctor)

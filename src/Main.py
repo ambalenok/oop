@@ -1,21 +1,24 @@
-import configparser
-from controllers.BasiController import BasiController
+from controllers.ControllerDoc import ControllerDoc
+from controllers.ControllerPat import ControllerPat
+from controllers.ControllerApp import ControllerApp
 
 
 class Main(object):
-    def __init__(self, file_name=""):
-        basiController = BasiController(file_name)
+    def __init__(self):
+        controllerPat = ControllerPat()
+        controllerDoc = ControllerDoc()
+        controllerApp = ControllerApp()
 
-        if file_name:
-            self.__list = basiController.read()
+        patientse = controllerPat.read()
+        doctorse = controllerDoc.read()
+        appealse = controllerApp.read(patientse, doctorse)
+
+        self.__list = patientse + doctorse + appealse
 
     def read(self):
         for item in self.__list:
             print(item)
 
 
-config = configparser.ConfigParser()
-config.read("settings.conf")
-
-x = Main(config["addr"]["root"])
+x = Main()
 x.read()

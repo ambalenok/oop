@@ -1,11 +1,14 @@
+from controllers.BasiController import BasiController
 from model.Appeals import Appeals
 from service.ClassListService import ClassListService
 
 
 class ControllerApp(object):
 
-    def read(self, appeals, patientse, doctorse):
+    def read(self, patientse, doctorse):
         appealse = list()
+        basicontroller = BasiController()
+        appeals = basicontroller.baza('app')
         for item in appeals:
             appeals = Appeals(item["id"], ClassListService.getByID(doctorse, item["doctors"]),
                               ClassListService.getByID(patientse, item["patients"]),
