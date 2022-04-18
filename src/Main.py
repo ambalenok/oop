@@ -1,10 +1,10 @@
-from controllers.Handling import Handling
+from controllers.BasiController import BasiController
 
 
 class Main(object):
     def __init__(self):
-        handling = Handling()
-        self.__list = handling.read()
+        basicontroller = BasiController()
+        self.__list = basicontroller.read()
 
     def read(self):
         for item in self.__list:
