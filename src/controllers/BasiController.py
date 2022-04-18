@@ -3,7 +3,7 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read("settings.conf")
-
+#
 
 class BasiController(object):
     def baza(self, key):
