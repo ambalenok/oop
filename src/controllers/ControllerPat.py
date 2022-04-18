@@ -1,13 +1,12 @@
-from controllers.BasiController import BasiController
+from controllers.BaseController import BaseController
 from model.Patients import Patients
 
 
-class ControllerPat(BasiController):
+class ControllerPat(BaseController):
 
     def read(self):
         patientse = list()
-        basicontroller = BasiController()
-        patients = basicontroller.baza('pat')
+        patients = self.getDataByKey('pat')
         for item in patients:
             patients = Patients(item["id"], item["surname"], item["patronymic"], item["year"])
             patientse.append(patients)
