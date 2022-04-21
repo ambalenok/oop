@@ -3,9 +3,17 @@ import configparser
 
 
 class BaseController(object):
-    def __init__(self):
+
+    def __init__(self, id, surname, patronymic):
+        self.id = id
+        self.surname = surname
+        self.patronymic = patronymic
         self.config = configparser.ConfigParser()
         self.config.read("settings.conf")
+
+    def getModel(self, item, baseClass):
+        valueAll = baseClass(item["id"], item["surname"], item["patronymic"], item["year"])
+        return valueAll
 
     def getDataByKey(self, key):
         file_name = self.config["addr"]["root"]
@@ -17,7 +25,7 @@ class BaseController(object):
     def read2(self, valueKey, baseClass):
         baseList = list()
         for item in valueKey:
-            valueKey = baseClass(item["id"], item["surname"], item["patronymic"], item["year"])
+            valueKey = self.getModel(item)
             baseList.append(valueKey)
 
         return baseList

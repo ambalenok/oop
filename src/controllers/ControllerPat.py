@@ -6,8 +6,10 @@ class ControllerPat(BaseController):
 
     def read(self):
         patients = self.getDataByKey('pat')
-        list = self.read2(patients, Patients)
-        return list
+        a = super().getModel(Patients)
+        #self.getModel = Patients(item["id"], item["surname"], item["patronymic"], item["year"])
+        return self.read2(patients, Patients, a)
+
 
     def dict(self, patientse, data):
         for item in patientse:

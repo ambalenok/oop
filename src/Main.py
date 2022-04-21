@@ -11,7 +11,7 @@ class Main(object):
 
         patientse = controllerPat.read()
         #doctorse = controllerDoc.read()
-        #appealse = controllerApp.read(patientse, doctorse)
+        # appealse = controllerApp.read(patientse, doctorse)
 
         self.__list = patientse
         # doctorse + appealse
