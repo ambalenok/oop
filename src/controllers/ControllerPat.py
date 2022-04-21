@@ -5,12 +5,9 @@ from model.Patients import Patients
 class ControllerPat(BaseController):
 
     def read(self):
-        patientse = list()
         patients = self.getDataByKey('pat')
-        for item in patients:
-            patients = Patients(item["id"], item["surname"], item["patronymic"], item["year"])
-            patientse.append(patients)
-        return patientse
+        list = self.read2(patients, Patients)
+        return list
 
     def dict(self, patientse, data):
         for item in patientse:

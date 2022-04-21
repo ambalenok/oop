@@ -13,3 +13,11 @@ class BaseController(object):
             data: dict = json.load(file_input)
             chek = {'pat': data.get("patients"), 'doc': data.get("doctors"), 'app': data["appeals"]}
         return chek[key]
+
+    def read2(self, valueKey, baseClass):
+        baseList = list()
+        for item in valueKey:
+            valueKey = baseClass(item["id"], item["surname"], item["patronymic"], item["year"])
+            baseList.append(valueKey)
+
+        return baseList
