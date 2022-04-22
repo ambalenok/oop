@@ -1,17 +1,15 @@
-from controllers.BasiController import BasiController
+from controllers.BaseController import BaseController
 from model.Doctor import Doctors
 
 
-class ControllerDoc(BasiController):
+class ControllerDoc(BaseController):
 
     def read(self):
-        doctorse = list()
-        basicontroller = BasiController()
-        doctors = basicontroller.baza('doc')
-        for item in doctors:
-            doctor = Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
-            doctorse.append(doctor)
-        return doctorse
+        item = super().read('doc')
+        return item
+
+    def getModelD(self, item):
+        return Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
 
     def dict(self, doctorse, data):
         for item in doctorse:

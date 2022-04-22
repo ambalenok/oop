@@ -1,17 +1,19 @@
-from controllers.BasiController import BasiController
+from controllers.BaseController import BaseController
 from model.Patients import Patients
 
 
-class ControllerPat(BasiController):
+class ControllerPat(BaseController):
+    # def __init__(self, id, surname, patronymic, year):
+    # self.year = year
+    # super.__init__(id, surname, patronymic)
 
     def read(self):
-        patientse = list()
-        basicontroller = BasiController()
-        patients = basicontroller.baza('pat')
-        for item in patients:
-            patients = Patients(item["id"], item["surname"], item["patronymic"], item["year"])
-            patientse.append(patients)
-        return patientse
+        item = super().read('pat')
+        return item
+
+    def getModelP(self, item):
+
+        return Patients(item["id"], item["surname"], item["patronymic"], item["year"])
 
     def dict(self, patientse, data):
         for item in patientse:
