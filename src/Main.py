@@ -10,10 +10,10 @@ class Main(object):
         controllerApp = ControllerApp()
 
         patientse = controllerPat.read()
-        #doctorse = controllerDoc.read()
+        doctorse = controllerDoc.read()
         # appealse = controllerApp.read(patientse, doctorse)
 
-        self.__list = patientse
+        self.__list = patientse +doctorse
         # doctorse + appealse
 
     def read(self):

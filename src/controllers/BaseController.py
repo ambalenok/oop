@@ -4,16 +4,23 @@ import configparser
 
 class BaseController(object):
 
-    def __init__(self, id, surname, patronymic):
-        self.id = id
-        self.surname = surname
-        self.patronymic = patronymic
+    def __init__(self):
+        # self.id = id
+        # self.surname = surname
+        # self.patronymic = patronymic
         self.config = configparser.ConfigParser()
         self.config.read("settings.conf")
 
-    def getModel(self, item, baseClass):
-        valueAll = baseClass(item["id"], item["surname"], item["patronymic"], item["year"])
-        return valueAll
+    def getJopa(self,item, baseClass, key):
+        if key == 'pat':
+            jojo2 = self.getModelP(item)
+        else:
+            jojo2 = self.getModelD(item)
+
+        jojo = (baseClass(item["id"], item["surname"], item["patronymic"], jojo2))
+
+        return jojo
+
 
     def getDataByKey(self, key):
         file_name = self.config["addr"]["root"]
@@ -22,10 +29,11 @@ class BaseController(object):
             chek = {'pat': data.get("patients"), 'doc': data.get("doctors"), 'app': data["appeals"]}
         return chek[key]
 
-    def read2(self, valueKey, baseClass):
+    def read(self, valueKey, baseClass):
+        key = valueKey
         baseList = list()
+        valueKey = self.getDataByKey(valueKey)
         for item in valueKey:
-            valueKey = self.getModel(item)
-            baseList.append(valueKey)
-
+            val = self.getJopa(item, baseClass, key)
+            baseList.append(val)
         return baseList
