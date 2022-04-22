@@ -11,15 +11,11 @@ class BaseController(object):
         self.config = configparser.ConfigParser()
         self.config.read("settings.conf")
 
-    def getJopa(self,item, baseClass, key):
+    def choiceList(self, item, key):
         if key == 'pat':
-            jojo2 = self.getModelP(item)
-        else:
-            jojo2 = self.getModelD(item)
-
-        jojo = (baseClass(item["id"], item["surname"], item["patronymic"], jojo2))
-
-        return jojo
+            return self.getModelP(item)
+        if key == 'doc':
+            return self.getModelD(item)
 
 
     def getDataByKey(self, key):
@@ -29,11 +25,10 @@ class BaseController(object):
             chek = {'pat': data.get("patients"), 'doc': data.get("doctors"), 'app': data["appeals"]}
         return chek[key]
 
-    def read(self, valueKey, baseClass):
-        key = valueKey
+    def read(self, valueKey):
         baseList = list()
-        valueKey = self.getDataByKey(valueKey)
-        for item in valueKey:
-            val = self.getJopa(item, baseClass, key)
+        valueClass = self.getDataByKey(valueKey)
+        for item in valueClass:
+            val = self.choiceList(item, valueKey)
             baseList.append(val)
         return baseList

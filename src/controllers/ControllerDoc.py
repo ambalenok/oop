@@ -5,13 +5,11 @@ from model.Doctor import Doctors
 class ControllerDoc(BaseController):
 
     def read(self):
-        item = super().read('doc', Doctors)
+        item = super().read('doc')
         return item
 
     def getModelD(self, item):
-        jojo = (item["specialization"], item["category"])
-
-        return jojo
+        return Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
 
     def dict(self, doctorse, data):
         for item in doctorse:

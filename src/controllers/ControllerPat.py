@@ -3,20 +3,17 @@ from model.Patients import Patients
 
 
 class ControllerPat(BaseController):
-    #def __init__(self, id, surname, patronymic, year):
-        #self.year = year
-        #super.__init__(id, surname, patronymic)
+    # def __init__(self, id, surname, patronymic, year):
+    # self.year = year
+    # super.__init__(id, surname, patronymic)
 
     def read(self):
-        item = super().read('pat', Patients)
+        item = super().read('pat')
         return item
 
     def getModelP(self, item):
-        jojo = item["year"]
 
-        return jojo
-
-
+        return Patients(item["id"], item["surname"], item["patronymic"], item["year"])
 
     def dict(self, patientse, data):
         for item in patientse:
