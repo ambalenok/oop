@@ -3,15 +3,10 @@ from model.Patients import Patients
 
 
 class ControllerPat(BaseController):
-    # def __init__(self, id, surname, patronymic, year):
-    # self.year = year
-    # super.__init__(id, surname, patronymic)
+    def __init__(self):
+        super().__init__('pat')
 
-    def read(self):
-        item = super().read('pat')
-        return item
-
-    def getModelP(self, item):
+    def getModel(self, item):
 
         return Patients(item["id"], item["surname"], item["patronymic"], item["year"])
 

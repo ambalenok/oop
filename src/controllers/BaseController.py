@@ -4,19 +4,13 @@ import configparser
 
 class BaseController(object):
 
-    def __init__(self):
-        # self.id = id
-        # self.surname = surname
-        # self.patronymic = patronymic
+    def __init__(self, valueKey):
+        self.valueKey = valueKey
         self.config = configparser.ConfigParser()
         self.config.read("settings.conf")
 
-    def choiceList(self, item, key):
-        if key == 'pat':
-            return self.getModelP(item)
-        if key == 'doc':
-            return self.getModelD(item)
-
+    def getModel(self, item):
+        raise NotImplementedError
 
     def getDataByKey(self, key):
         file_name = self.config["addr"]["root"]
@@ -25,10 +19,10 @@ class BaseController(object):
             chek = {'pat': data.get("patients"), 'doc': data.get("doctors"), 'app': data["appeals"]}
         return chek[key]
 
-    def read(self, valueKey):
+    def read(self):
         baseList = list()
-        valueClass = self.getDataByKey(valueKey)
+        valueClass = self.getDataByKey(self.valueKey)
         for item in valueClass:
-            val = self.choiceList(item, valueKey)
+            val = self.getModel(item)
             baseList.append(val)
         return baseList

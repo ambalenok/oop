@@ -3,12 +3,10 @@ from model.Doctor import Doctors
 
 
 class ControllerDoc(BaseController):
+    def __init__(self):
+        super().__init__('doc')
 
-    def read(self):
-        item = super().read('doc')
-        return item
-
-    def getModelD(self, item):
+    def getModel(self, item):
         return Doctors(item["id"], item["surname"], item["patronymic"], item["specialization"], item["category"])
 
     def dict(self, doctorse, data):
