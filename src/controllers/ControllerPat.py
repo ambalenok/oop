@@ -1,7 +1,7 @@
 from controllers.BaseController import BaseController
 from model.Patients import Patients
 
-
+#
 class ControllerPat(BaseController):
     # def __init__(self, id, surname, patronymic, year):
     # self.year = year
